@@ -21,7 +21,7 @@
 
 ### Parte 3
 1. Un algoritmo es una serie finita de pasos con el objetivo de resolver un problema determinado. 
-2. La programación estructurada se basa en un paradigma de programación que facilita la creación de programas con código legible, ordenado y reutilizable haciendo uso principalmente de módulos o bloques de código. (rev)
+2. La programación estructurada se basa en un paradigma de programación que facilita la creación de programas con código legible, ordenado y reutilizable haciendo uso principalmente de módulos o bloques de código. Utiliza funciones principalmente y su codigo se lee en forma de secuencia utilizando iteraciones y condicionales como sus estructuras de control.
 3. Las tres estructuras de control en la programación estructurada son la secuencial, condicional e iterativa. 
 4. Un parámetro es una representación de un valor dentro de una función o procedimiento, no es el valor en sí. El valor de este parámetro es lo que se le pasa a la función cuando se la necesita ejecutar y a este se le llama argumento. 
 5. Un argumento puede ser pasado a una función o procedimiento por valor o por referencia. Cuando se pasa por valor se pasa una copia del contenido del lugar de memoria que ocupa este, no se pasa la dirección de memoria donde está ubicado. Contrario a esto sería pasar un valor por referencia en donde directamente se le pasa la ubicación en memoria lo que permite que se modifique desde el origen el valor pasado. 
