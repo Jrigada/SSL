@@ -1,0 +1,3 @@
+PS C:\Users\JRigada\Documents\UTN\SSL\Hola Mundo> gcc hello.c -std=c18 -o hello.exe
+PS C:\Users\JRigada\Documents\UTN\SSL\Hola Mundo> ./hello.exe
+Hola Mundo
