@@ -10,7 +10,7 @@
   * Repositorio publico: https://github.com/microsoft/vscode
   
 * DropBox 
-  * Programado en python en un comienzo. 
+  * Programado en Python.
   
 * Microsoft Excel 
   * Programado en C y C++
