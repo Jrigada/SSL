@@ -20,5 +20,5 @@
   * Repositorio publico: https://github.com/audacity/audacity
   
 * Telegram 
-  * Programado en Java (Cliente de Android).
+  * Programado en Java y C.
   * Repositorio Publico: https://github.com/DrKLO/Telegram.
