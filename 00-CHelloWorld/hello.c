@@ -5,5 +5,10 @@
 #include <stdio.h>
 
 int main(void){
+
+    freopen("output.txt","w",stdout);
+
     printf("Hola Mundo");
+
+    fclose(stdout);
 }
