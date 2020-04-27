@@ -7,7 +7,6 @@
 
 int main() {
     std::cout << "Hello World!";
-    return 0;
 }
 ```
 
@@ -25,9 +24,9 @@ main() {
 
 |Lenguaje|&nbsp;Lexico |&nbsp; Sintactico | &nbsp;Semantico|
 |---------|-----|---------|-----|
-|C++|* Define el tipo de dato de la funcion main <br> * Retorna cero para terminar la funcion main |* Utiliza ```<iostream>``` como biblioteca de encabezados <br>  * Utiliza std::cout para agregar el texto al flujo de salida <br> |<br>|
+|C++|* Ambos incluyen una biblioteca <br> * Define el tipo de dato de la funcion main <br> * Las sentencias dentro de las funciones tambien <br> tienen una diferencia lexica |* Utiliza ```<iostream>``` como biblioteca de encabezados <br>  * Utiliza std::cout para agregar el texto al flujo de salida <br> |* Utiliza cout siendo esta un objeto global de la libreria y no una funcion|
 |<br>|
-|C|* No incluye el tipo de dato en la funcion main <br>  * No retorna ningun valor al terminar la funcion| * Utiliza ```<stdio.h> ``` como biblioteca de encabezados <br> * Utiliza la funcion printf para realizar el output del texto <br> |<br>|
+|C|* No incluye el tipo de dato en la funcion main <br> * Las sentencias dentro de las funciones son diferentes en sus componentes,<br> printf no es lo mismo que std::cout * No retorna ningun valor al terminar la funcion| * Utiliza ```<stdio.h> ``` como biblioteca de encabezados <br> * Utiliza la funcion printf para realizar el output del texto <br> |* Utiliza dentro de Main una funcion, printf|
 
 
 --------------------
