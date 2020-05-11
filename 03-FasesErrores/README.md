@@ -8,7 +8,7 @@
 # Fases
 
 1. Comando: gcc -E hello2.c -o hello2.i
-   1. Resultado: Se obtuvo un hello.i al solamente proprocesar el codigo de hello2.c. En este hello.i el preprocesador tomo como punto de partida el #include y anexo en su lugar los encabezados de la biblioteca <stdio.h> que solicitamos. Ademas de esto nos quito los comentarios reemplazandolos con un espacio. 
+   1. Resultado: Se obtuvo un hello.i al solo preprocesar el codigo de hello2.c. En este hello.i el preprocesador tomo como punto de partida el #include y anexo en su lugar los encabezados de la biblioteca <stdio.h> que solicitamos. Ademas de esto nos quito los comentarios reemplazandolos con un espacio. 
 
 2. Comando: gcc -E hello3.c -o hello3.i
    1. Resultado: Se obtuvo hello3.i que es identico a hello3.c con la excepcion de los comentarios creados por command line a la hora de preprocesarlo. Los resultados son iguales ya que no tuvo que incluir ningun codigo de ninguna biblioteca externa ni tampoco tenia comentario alguno para reemplazar por un espacio. 
