@@ -1,14 +1,22 @@
-    #include <stdio.h>
-    #include <assert.h>
-    #include "string.h"
-    #include <stdbool.h>
+/*
+Juan Rigada
+21-06-2020
+*/
 
-int main(){
+#include <stdio.h>
+#include <assert.h>
+#include "strings.h"
+#include <stdbool.h>
+#include <string.h>
 
-    assert(0==strcmp("4",getLength("hola")));
-    assert(0==strcmp(false,isEmpty("hola")));
-    assert(0==strcmp("ababab",power("ab",3)));
-    assert(0==strcmp("1",contieneCaracter("hola","o")));
-
+int main()
+{
+    assert(0 == GetLength(""));
+    assert(4 == GetLength("test"));
+    assert(!IsEmpty("test"));
+    assert(0 == strcmp("", Power("test", 0)));
+    assert(0 == strcmp("",Power("", 1)));
+    assert(0 == strcmp("testtest",Power("test", 2)));
+    assert(2 == PosicionCaracter("test","e"));
+    return 0;
 }
-
