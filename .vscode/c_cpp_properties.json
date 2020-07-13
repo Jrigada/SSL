@@ -11,7 +11,7 @@
                 "_UNICODE"
             ],
             "compilerPath": "C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Tools/MSVC/14.23.28105/bin/Hostx64/x64/cl.exe",
-            "cStandard": "c11",
+            "cStandard": "c18",
             "cppStandard": "c++17",
             "intelliSenseMode": "gcc-x86"
         }

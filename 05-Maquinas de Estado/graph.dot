@@ -1,0 +1,8 @@
+digraph {
+    "Dentro de una palabra" -> "Fuera de una palabra" [ label= "Espacio | nc++" ]
+    "Dentro de una palabra" -> "Fuera de una palabra" [ label= " New Line | nc++, nl++" ]
+    "Fuera de una palabra" -> "Dentro de una palabra" [ label= "Caracter / nc++, nw++" ]
+    "Dentro de una palabra" -> "Dentro de una palabra" [ label= "Caracter / nc++" ]
+    "Fuera de una palabra" -> "Fuera de una palabra" [ label= "Espacio / nc++" ]
+    "Fuera de una palabra" -> "Fuera de una palabra" [ label= "Nueva Linea / nc++, nl++" ]
+}
