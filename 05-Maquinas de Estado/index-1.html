@@ -1,0 +1,35 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Unknown </title></head><body>
+<ul>
+<li>Usuario GitHub: jrigada</li>
+<li>Legajo: 170804/1</li>
+<li>Nombre y Apellido: Juan Rigada</li>
+<li>Trabajo: Maquinas de Estado - Palabras en Lineas</li>
+<li>Entorno utilizado: MinGW + Visual Studio Code</li>
+</ul>
+<h1 id="arbol-de-expresion-inicializacion-de-contadores">Arbol de Expresion - Inicializacion de contadores</h1>
+<p><img src="contadores-1.png"/></p>
+<h1 id="arbol-de-expresion-sentencia-condicional">Arbol de Expresion - Sentencia Condicional</h1>
+<p><img src="if-1.png"/></p>
+<h2 id="formalizacion-de-la-maquina-de-estado">Formalizacion de la maquina de estado</h2>
+<ul>
+<li>
+<p>M = (Q, Σ, q0, F, T) // </p>
+</li>
+<li>
+<p>Q = {Dentro de una palabra, Fuera de una palabra};</p>
+</li>
+<li>Σ = Codigo ASCII;</li>
+<li>q0 = Fuera de una palabra; </li>
+<li>F = {Dentro de una palabra, Fuera de una palabra};</li>
+<li>T = {Dentro de una palabra =&gt; Fuera de una palabra,
+        Dentro de una palabra =&gt; Dentro de una palabra, 
+        Fuera de una palabra =&gt; Dentro de una palabra, 
+        Fuera de una palabra =&gt; Fuera de una palabra}</li>
+</ul>
+<h1 id="implementacion-1-switch-y-enum">Implementacion #1 - Switch y Enum</h1>
+<p>Los cambios introducidos nos permitireron regularizar la version de Kernighan y Ritchie, de esta forma con Switch estamos tratando a todas las transiciones de igual manera y esto permite hoy en dia una automatizacion con algun intereprete como un compilador. <br/>
+Con la optimizacion adecuada por parte del compilador creo que no habria diferencias de performance entre ambas implementaciones.</p>
+<h1 id="implementacion-2-sentencias-goto">Implementacion #2 - Sentencias <code>goto</code></h1>
+<p>goto se sigue usando hoy en dia, su naturaleza se considera menos dañina que lo publicado en 1968. Se siguen utilizando en muchos programas realizados en C que son actualmente mantenidos, se encuentran muy presentes en el kernel de Linux tambien por ejemplo. Se puede utilizar de una forma adecuada teniendo en cuenta sus desventajas y trabajando de acuerdo a ellas, muchas veces su aplicacion puede resultar en un codigo mas facil de leer y mantener. Son especialmente util como una forma de salir de una funcion de una forma mas ordenada y legible asi como tambien para salir de muchos condicionales anidados. </p>
+<p>Ademas de C, goto es utilizado actualmente en lenguajes como Golang y C++. </p>
+</body></html>
