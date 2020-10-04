@@ -7,7 +7,6 @@ int main(void){
 
     int tokenIndex = 0;
     char str[100];
-    char *ptr;
      
     printf("Ingresa una expresion: ");
     gets(str);
@@ -15,8 +14,8 @@ int main(void){
      
     size_t i = 0;
     
-    while (str[i] != '\0') {       /* Stop looping when we reach the null-character. */
-        tokens[tokenIndex] = scan(str[i]);  /* Print each character of the string. */
+    while (str[i] != '\0') {      
+        tokens[tokenIndex] = getNextToken(str[i]); 
         i++;
     } 
          
