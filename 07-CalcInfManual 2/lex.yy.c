@@ -375,8 +375,8 @@ static void yy_fatal_error (yyconst char msg[]  );
 	*yy_cp = '\0'; \
 	(yy_c_buf_p) = yy_cp;
 
-#define YY_NUM_RULES 8
-#define YY_END_OF_BUFFER 9
+#define YY_NUM_RULES 9
+#define YY_END_OF_BUFFER 10
 /* This struct is not used in this scanner,
    but its presence is necessary. */
 struct yy_trans_info
@@ -386,7 +386,7 @@ struct yy_trans_info
 	};
 static yyconst flex_int16_t yy_accept[13] =
     {   0,
-        0,    0,    9,    7,    8,    3,    4,    1,    2,    6,
+        0,    0,   10,    8,    6,    3,    4,    1,    2,    7,
         5,    0
     } ;
 
@@ -771,21 +771,27 @@ YY_RULE_SETUP
 return t_constNum;
 	YY_BREAK
 case 6:
+/* rule 6 can match eol */
 YY_RULE_SETUP
 #line 11 "myscanner.lex"
-return t_id;
+return terminated;
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
 #line 12 "myscanner.lex"
-printf("error");
+return t_id;
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
 #line 13 "myscanner.lex"
+return null;
+	YY_BREAK
+case 9:
+YY_RULE_SETUP
+#line 14 "myscanner.lex"
 ECHO;
 	YY_BREAK
-#line 789 "lex.yy.c"
+#line 795 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1786,7 +1792,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 13 "myscanner.lex"
+#line 14 "myscanner.lex"
 
 
 int yywrap(void)

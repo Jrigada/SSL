@@ -2,6 +2,9 @@
 #include <stdbool.h>
 
 int main(void){
+    extern int yylex();
+    extern int yylineno;
+    extern char* yytext;
     token tokens[30];
     bool result;
     token a = t_null;
@@ -9,46 +12,50 @@ int main(void){
     int aux = 0;
     int operando1 = 0;
     bool parentesisAbierto = false;
+    bool noError = true;
 
     token ultimoOperador;
 
     int tokenIndex = 0;
     char str[100];
      
-    printf("Ingresa una expresion: ");
-    gets(str);
-     
     size_t i = 0;
+
+    int ntoken, vtoken;
+
+    ntoken = yylex();
     
-    while (str[i] != '\0') {      
-        a = getNextToken(str[i]);
-        tokens[tokenIndex] = a; 
-        if (a == t_constNum) {
+    while (ntoken != terminated) {   
+        tokens[tokenIndex] = ntoken; 
+        if (ntoken == t_constNum) {
             aux = aux*10;
-            calculo = (str[i]-'0') + aux;
+            calculo = atoi(yytext) + aux;
             aux = calculo;
-        } else if (a == t_sum) {
+        } else if (ntoken == t_sum) {
             ultimoOperador = t_sum;
             operando1 += calculo;
             aux = 0;
             calculo = 0;
-        } else if (a == t_mul) {
+        } else if (ntoken == t_mul) {
             ultimoOperador = t_mul;
             operando1 = 1;
             operando1 *= calculo;
             aux = 0;
             calculo = 0;
-        } else if (a == t_leftP) {
+        } else if (ntoken == t_leftP) {
             parentesisAbierto = true;
-        } else if (a == t_rightP && parentesisAbierto) {
+        } else if (ntoken == t_rightP && parentesisAbierto) {
             parentesisAbierto = false;
-        } 
+        } else if (ntoken == null) {
+            noError = false;
+        }
+        ntoken = yylex();
         i++;
-    } 
-         
+        tokenIndex++;
+    }
     result = parsear(tokens,tokenIndex,parentesisAbierto);
     
-    if (result) {
+    if (result && noError) {
         printf("%s\n","Expresion valida");
         if (ultimoOperador == t_sum) {
             operando1 += calculo;

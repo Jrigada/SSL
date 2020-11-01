@@ -4,4 +4,3 @@
 
 bool parsear(token*,int,bool);
 bool esParValido(token,token);
-token getNextToken(int);

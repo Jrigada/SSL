@@ -8,8 +8,9 @@
 "(" return t_leftP;
 ")" return t_rightP;
 [1-9] return t_constNum;
+"\n" return terminated;
 [a-zA-] return t_id;
-.	printf("error");
+.	return null;
 %%
 int yywrap(void)
 {
