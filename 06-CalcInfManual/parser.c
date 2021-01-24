@@ -16,9 +16,15 @@ int calculo = 0;
 
 int var1 = 0;
 
+int varParentesis = 0;
+
 int term = 0;
 
+int termParentesis = 0;
+
 int parentesisAbierto = 0;
+
+int auxParentesis = 0;
 
 token currentOperator;
 
@@ -124,13 +130,13 @@ void sentencia(void){
         case t_mul: 
             match(t_id);
             match(t_mul);
-            expresionleftpar();
+            expresionLeftPar();
             break;
 
         case t_sum:
             match(t_id);
             match(t_sum);
-            expresionleftpar();
+            expresionLeftPar();
             break;
 
         case t_eof:
@@ -144,11 +150,11 @@ void sentencia(void){
         }
         break;
     case t_constNum:
-        expresionleftpar();
+        expresionLeftPar();
         break;
 
     case t_leftpar:
-        expresionleftpar();
+        expresionLeftPar();
         break;
     default:
         valid = false;
@@ -157,12 +163,10 @@ void sentencia(void){
     }
 }
 
-void expresionleftpar(void){
+void expresionLeftPar(void){
     switch (currentToken) 
     {
     case t_constNum:
-
-
         var1 = charToInt(b.array[posicionArray]);
         printf("%d\n",var1);
 
@@ -205,12 +209,68 @@ void expresionleftpar(void){
     case t_leftpar:
         match(t_leftpar);
         parentesisAbierto ++;
-        expresionleftpar();
+        expresionRightPar();
         break;
     
     default:
         valid = false;
         printf("%s\n","fallo 3");
+        break;
+    }
+}
+
+void expresionRightPar(void){
+
+    switch (currentToken) 
+    {
+    case t_constNum:
+        varParentesis = charToInt(b.array[posicionArray]);
+        printf("%d\n",varParentesis);
+
+        match(t_constNum);
+
+        while(currentToken == t_constNum) {
+            int i = 10;
+            if(charToInt(b.array[posicionArray])==0) {
+                varParentesis *= i;
+            } else {
+                varParentesis = varParentesis*i + charToInt(b.array[posicionArray]);
+            }
+            
+            match(t_constNum);
+            i = i*10;
+            printf("%d\n",varParentesis);
+        }
+
+        if (currentOperator == t_mul) {
+            termParentesis = (termParentesis * varParentesis);
+        }
+
+        switch (currentToken)
+        {
+        case t_eof:
+            if (currentOperator == t_mul) {
+                auxParentesis += termParentesis;
+            } else {
+                auxParentesis += varParentesis;
+            }
+            break;
+        
+        default:
+            operadorInsidePar();
+            break;
+        }
+        break;
+    
+    case t_leftpar:
+        match(t_leftpar);
+        parentesisAbierto ++;
+        expresionRightPar();
+        break;
+    
+    default:
+        valid = false;
+        printf("%s\n","fallo 5");
         break;
     }
 }
@@ -234,7 +294,7 @@ void expresionleftpar(void){
     
 //     case t_rightpar:
 //         match(t_rightpar);
-//         expresionleftpar();
+//         expresionLeftPar();
 //         break;
     
 //     default:
@@ -252,7 +312,7 @@ void operador(void){
         }
         currentOperator = t_mul;
         match(t_mul);
-        expresionleftpar();
+        expresionLeftPar();
         break;
     
     case t_sum:
@@ -264,13 +324,78 @@ void operador(void){
         }
         currentOperator = t_sum;
         match(t_sum);
-        expresionleftpar();
+        expresionLeftPar();
         break;
 
     
     case t_rightpar: 
         parentesisAbierto --;
         match(t_rightpar);
+        operador();
+        break;
+
+    case t_eof:
+        break;
+
+    default:
+        valid = false;
+        printf("%s\n","fallo 4");
+        break;
+    }
+}
+
+void operadorInsidePar(void){
+    switch (currentToken)
+    {
+    case t_mul:
+        if (currentOperator != t_mul) {
+            termParentesis += varParentesis;
+        }
+        currentOperator = t_mul;
+        match(t_mul);
+        expresionRightPar();
+        break;
+    
+    case t_sum:
+        if (currentOperator == t_mul) {
+            auxParentesis += termParentesis;
+            termParentesis=0;
+        } else {
+        auxParentesis = auxParentesis + varParentesis;
+        }
+        currentOperator = t_sum;
+        match(t_sum);
+        expresionRightPar();
+        break;
+
+    
+    case t_rightpar: 
+        parentesisAbierto --;
+        match(t_rightpar);
+        if (currentOperator == t_mul) {
+            auxParentesis += termParentesis;
+            term=0;
+        } else {
+        auxParentesis = auxParentesis + varParentesis;
+        }
+        switch (currentToken)
+        {
+        case t_mul:
+            term = auxParentesis;
+            match(t_mul);
+            currentOperator = t_mul;
+            expresionLeftPar();
+            break;
+
+        case t_sum: 
+            calculo += auxParentesis;
+            match(t_sum);
+            currentOperator= t_sum;
+            expresionLeftPar();
+        
+        default:
+            break;
+        }
         operador();
         break;
 
