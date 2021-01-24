@@ -6,12 +6,28 @@ extern token currentToken;
 //creo el array de tokens
 Array a; 
 
+CharArray b;
+
 int posicionArray = 0;
+
+bool valid = true;
+
+int calculo = 0;
+
+int var1 = 0;
+
+int term = 0;
+
+int parentesisAbierto = 0;
+
+token currentOperator;
 
 int main(void){
 
 //inicializo el array de tokens
 initArray(&a, 5);
+
+initCharArray(&b, 5);
 
 //punteros y variable para leer el txt
     FILE *filePointer; 
@@ -34,13 +50,14 @@ token tempToken;
             //scanner me analiza los caracteres del txt y me los carga en el array
             tempToken = getNextToken(ch);
             // programa();
+            insertCharArray(&b,ch);
             insertArray(&a,tempToken);
         }
     }
 //leo el array para chequear si es correcto
-    int i;
-    for (i=0;i<a.size;i++)
-        printf("%d\n", a.array[i]);
+    // int i;
+    // for (i=0;i<a.size;i++)
+    //     printf("%d\n", a.array[i]);
     
     fclose(filePointer);
 
@@ -49,6 +66,7 @@ token tempToken;
 
 
     freeArray(&a);
+    freeCharArray(&b);
 
     return 0;
 }
@@ -57,21 +75,32 @@ void match(token b) {
     if (b == currentToken) {
         posicionArray++;
         currentToken = a.array[posicionArray];
-        printf("%s\n","La pegamos");
     } else {
-        printf("%s\n","No la pegamos");
+        valid = false;
+        printf("%s\n","Error");
     }
+}
+
+int charToInt(char a) {
+    return a - '0';
 }
 
 void objetivo(void) {
     currentToken = a.array[posicionArray];
     programa();
     match(t_eof);
-    printf("%s\n","Terminado");
+    if (parentesisAbierto != 0) {
+            valid = false;
+        }
+    if (!valid) {
+        printf("%s\n","Expresion invalida");
+    } else {
+        printf("%s\n","Expresion valida");
+        printf("%d\n",calculo);
+    }
 }
 
 void programa(void) {
-    // match(t_id);
     listaDeSentencias();
 }
 
@@ -104,7 +133,12 @@ void sentencia(void){
             expresionleftpar();
             break;
 
+        case t_eof:
+            match(t_id);
+            break;
+
         default:
+            valid = false;
             printf("%s\n","fallo 1");
             break;
         }
@@ -117,6 +151,7 @@ void sentencia(void){
         expresionleftpar();
         break;
     default:
+        valid = false;
         printf("%s\n","fallo 2");
         break;
     }
@@ -125,20 +160,39 @@ void sentencia(void){
 void expresionleftpar(void){
     switch (currentToken) 
     {
-    case t_id:
-        match(t_id);
-        while (currentToken == t_id)
-        {
-            match(t_id);
-        }
-        operador();
-        break;
-    
     case t_constNum:
+
+
+        var1 = charToInt(b.array[posicionArray]);
+        printf("%d\n",var1);
+
         match(t_constNum);
+
+        while(currentToken == t_constNum) {
+            int i = 10;
+            if(charToInt(b.array[posicionArray])==0) {
+                var1 *= i;
+            } else {
+                var1 = var1*i + charToInt(b.array[posicionArray]);
+            }
+            
+            match(t_constNum);
+            i = i*10;
+            printf("%d\n",var1);
+        }
+
+        if (currentOperator == t_mul) {
+            term = (term * var1);
+        }
+
         switch (currentToken)
         {
         case t_eof:
+            if (currentOperator == t_mul) {
+                calculo += term;
+            } else {
+                calculo += var1;
+            }
             printf("%s\n","Terminamos");
             break;
         
@@ -150,10 +204,12 @@ void expresionleftpar(void){
     
     case t_leftpar:
         match(t_leftpar);
+        parentesisAbierto ++;
         expresionleftpar();
         break;
     
     default:
+        valid = false;
         printf("%s\n","fallo 3");
         break;
     }
@@ -191,16 +247,38 @@ void operador(void){
     switch (currentToken)
     {
     case t_mul:
+        if (currentOperator != t_mul) {
+            term += var1;
+        }
+        currentOperator = t_mul;
         match(t_mul);
         expresionleftpar();
         break;
     
     case t_sum:
+        if (currentOperator == t_mul) {
+            calculo += term;
+            term=0;
+        } else {
+        calculo = calculo + var1;
+        }
+        currentOperator = t_sum;
         match(t_sum);
         expresionleftpar();
         break;
+
     
+    case t_rightpar: 
+        parentesisAbierto --;
+        match(t_rightpar);
+        operador();
+        break;
+
+    case t_eof:
+        break;
+
     default:
+        valid = false;
         printf("%s\n","fallo 4");
         break;
     }
