@@ -1,6 +1,7 @@
 %{
 #include "y.tab.h"
 extern int yyval;
+void yyerror(const char *s);
 %}
 
 %%
@@ -11,8 +12,12 @@ extern int yyval;
 [0-9]+ {  yylval=atoi(yytext); 
           return t_constNum; 
        }  
-"\n" return terminated;
-[a-zA-] return t_id;
+"/" return t_eof;
+"=" return t_asig;
+[a-zA-] {yylval = yytext[0]; return t_id;}
+";" {return yytext[0];}
+[ \t\n] ;
+. {yyerror("caracter invalido");}
 %%
 int yywrap(void)
 {

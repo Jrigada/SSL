@@ -1,8 +1,10 @@
 CC = gcc
 CFLAGS = -g
 
-calculadora: y.tab.c lex.yy.c
-	$(CC) -g -o calculadora y.tab.c lex.yy.c -w
+all: 
+	lex myscanner.lex 
+	yacc -d myparser.y 
+	gcc lex.yy.c y.tab.c -o calc
 
 clean:
 	-rm calculadora
