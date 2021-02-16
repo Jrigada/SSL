@@ -1,10 +1,6 @@
-CC = gcc
-CFLAGS = -g
+  # build an executable named myprog from myprog.c
+all: parser.c 
+	gcc -g -Wall -o parser parser.c tablaDeSimbolos.c
 
-all: 
-	lex myscanner.lex 
-	yacc -d myparser.y 
-	gcc lex.yy.c y.tab.c -o calc
-
-clean:
-	-rm calculadora
+clean: 
+	$(RM) parser

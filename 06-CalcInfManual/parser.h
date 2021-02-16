@@ -57,6 +57,8 @@ void freeCharArray(CharArray *a) {
   a->used = a->size = 0;
 }
 
+int symbolVal(char symbol);
+void updateSymbolVal(char symbol, int val);
 void match(token);
 int charToInt(char);
 void objetivo(void);
