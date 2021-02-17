@@ -11,45 +11,14 @@ calc7="a=3;b=2;@a+(a*b)/"
 calc8="a=3;b=2;@(a+b)*2/"
 
 
-echo -n $calc1 > example.txt
-
-./parser > output
-
-echo -n $calc2 > example.txt
-
-./parser >> output
-
-echo -n $calc3 > example.txt
-
-./parser >> output
-
-echo -n $calc4 > example.txt
-
-./parser >> output
-
-echo -n $calc5 > example.txt
-
-./parser >> output
-
-echo -n $calc6 > example.txt
-
-./parser >> output
-
-echo -n $calc7 > example.txt
-
-./parser >> output
-
-echo -n $calc8 > example.txt
-
-./parser >> output
-
-echo -n $calc9 > example.txt
-
-./parser >> output
-
-echo -n $calc10 > example.txt
-
-./parser >> output
+echo $calc1 | ./parser > output
+echo $calc2 | ./parser >> output
+echo $calc3 | ./parser >> output
+echo $calc4 | ./parser >> output
+echo $calc5 | ./parser >> output
+echo $calc6 | ./parser >> output
+echo $calc7 | ./parser >> output
+echo $calc8 | ./parser >> output
 
 cat output
 
