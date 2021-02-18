@@ -2,7 +2,7 @@
 
 int main(void) {
     int c;
-    getNextToken(c);
+    getNextToken();
     return 0;
 
 }

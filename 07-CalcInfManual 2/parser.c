@@ -9,39 +9,8 @@ int main(void){
     //inicializar tabla de simbolos
     initTablaDeSimbolos();
 
-    //inicializo el array de tokens
-    // initArray(&a, 5);
-
+    //inicializo el array de valores
     initCharArray(&b, 5);
-
-    // //punteros y variable para leer el txt
-    // FILE *filePointer; 
-    // char ch;
-
-    // //variable temporal para llenar el array
-    // token tempToken;
-
-    // filePointer = fopen("example.txt", "r");
-
-    // if (filePointer == NULL)
-    // {
-    //     printf("File is not available \n");
-    // }
-    // else
-    // {
-    //     //4
-    //     while ((ch = fgetc(filePointer)) != EOF)
-    //     {
-    //         //scanner me analiza los caracteres del txt y me los carga en el array
-    //         tempToken = getNextToken(ch);
-    //         // programa();
-    //         insertCharArray(&b,ch);
-    //         insertArray(&a,tempToken);
-    //     }
-    // }
-    
-    // fclose(filePointer);
-
 
     objetivo();
 
@@ -138,32 +107,6 @@ void sentencia(){
        
 }
 
-
-//TODO: NO separa en terminos
-// int expresion() {
-
-//     calculo = datoElemental();
-
-//     switch (currentToken) 
-//     {
-//         case t_sum:
-//             int total;
-//             match(t_sum);
-//             total = calculo + datoElemental();
-//             return total;
-//             break;
-
-//         case t_mul:
-//             int total;
-//             match(t_mul);
-//             total = calculo + datoElemental();
-
-//         default: 
-//             return calculo;
-//     }
-// }
-
-
 int suma(){
     int calculoSuma;
 
@@ -190,7 +133,7 @@ int multiplicacion(){
 
     calculoMultiplicacion = datoElemental();
 
-    switch (getNextToken()) //ESTE SWITCH ME COME UN TOKEN Y SE ME CORRE TODO
+    switch (getNextToken())
     {
     case t_mul:
         
@@ -214,20 +157,6 @@ int datoElemental() {
         
         match(t_constNum);
         calculoDatoElemental = atoi(b.array);
-
-        // //funcion para numeros de mas de una cifra
-        // while(getNextToken() == t_constNum) {
-        //     int i = 10;
-        //     if(charToInt(b.array[posicionArray])==0) {
-        //         calculoDatoElemental *= i;
-        //     } else {
-        //         calculoDatoElemental = calculoDatoElemental*i + charToInt(b.array[posicionArray]);
-        //     }
-            
-        //     match(t_constNum);
-        //     i = i*10;
-        // }
-
         return calculoDatoElemental;
         break;
 
@@ -241,11 +170,9 @@ int datoElemental() {
     case t_leftpar:
         
         match(t_leftpar);
-        // parentesisAbierto++;
         calculoDatoElemental = suma();
         match(t_rightpar);
         return calculoDatoElemental;
-        // parentesisAbierto--;
         break;
     
     default:

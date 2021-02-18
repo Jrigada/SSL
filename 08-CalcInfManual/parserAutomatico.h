@@ -34,8 +34,8 @@
 /* Undocumented macros, especially those whose name start with YY_,
    are private implementation details.  Do not rely on them.  */
 
-#ifndef YY_YY_Y_TAB_H_INCLUDED
-# define YY_YY_Y_TAB_H_INCLUDED
+#ifndef YY_YY_PARSERAUTOMATICO_H_INCLUDED
+# define YY_YY_PARSERAUTOMATICO_H_INCLUDED
 /* Debug traces.  */
 #ifndef YYDEBUG
 # define YYDEBUG 0
@@ -52,26 +52,42 @@ extern int yydebug;
     t_constNum = 258,
     t_mul = 259,
     t_sum = 260,
-    t_leftP = 261,
-    t_rightP = 262,
+    t_leftpar = 261,
+    t_rightpar = 262,
     t_id = 263,
     t_eof = 264,
-    t_asig = 265
+    t_asig = 265,
+    t_null = 266,
+    t_print = 267,
+    t_pyc = 268
   };
 #endif
 /* Tokens.  */
 #define t_constNum 258
 #define t_mul 259
 #define t_sum 260
-#define t_leftP 261
-#define t_rightP 262
+#define t_leftpar 261
+#define t_rightpar 262
 #define t_id 263
 #define t_eof 264
 #define t_asig 265
+#define t_null 266
+#define t_print 267
+#define t_pyc 268
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
-typedef int YYSTYPE;
+union YYSTYPE
+{
+#line 11 "generadorParser.y"
+
+   char caracter;
+   int numero;
+
+#line 88 "parserAutomatico.h"
+
+};
+typedef union YYSTYPE YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define YYSTYPE_IS_DECLARED 1
 #endif
@@ -81,4 +97,4 @@ extern YYSTYPE yylval;
 
 int yyparse (void);
 
-#endif /* !YY_YY_Y_TAB_H_INCLUDED  */
+#endif /* !YY_YY_PARSERAUTOMATICO_H_INCLUDED  */

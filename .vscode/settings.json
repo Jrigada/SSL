@@ -1,6 +1,13 @@
 {
     "files.associations": {
         "parser.h": "c",
-        "stdbool.h": "c"
+        "stdbool.h": "c",
+        "scanner.h": "c",
+        "tabladesimbolos.h": "c",
+        "y.tab.h": "c",
+        "stdio.h": "c",
+        "string.h": "c",
+        "stdlib.h": "c",
+        "array.h": "c"
     }
 }

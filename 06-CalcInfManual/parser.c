@@ -1,7 +1,7 @@
 #include "parser.h"
 #include <stdbool.h>
 
-extern token currentToken;
+token currentToken;
 
 int symbols[52];
 
